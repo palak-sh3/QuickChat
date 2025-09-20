@@ -11,21 +11,10 @@ import { Server } from "socket.io";
 const app = express();
 const server = http.createServer(app)
 
-app.use(express.json({ limit: "4mb" }));
-app.use(cors({
-  origin: "https://quick-chat-ellpeg7ds-plks-projects-6a125aea.vercel.app",
-  credentials: true
-}));
-
-// Socket.IO server
+//Initialize socket.io server
 export const io = new Server(server, {
-  cors: {
-    origin: "https://quick-chat-ellpeg7ds-plks-projects-6a125aea.vercel.app",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
-
+    cors: {origin: "*"}
+})
 
 //Store online users
 export const userSocketMap = {}; //{ userId: socketId }
